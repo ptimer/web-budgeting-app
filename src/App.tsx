@@ -1,11 +1,18 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+// rrd imports
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// pages
 import Dashboard, { dashboardLoader } from "@/pages/Dashboard";
-import Main, { mainLoader } from "@/layouts/Main";
 import Error from "@/pages/Error";
 
+// layouts
+import Main, { mainLoader } from "@/layouts/Main";
+
+// hooks
+import useDocumentTitle from "./hooks/useDocumentTitle";
+
+// constants
+import { SiteConfig } from '@/constants';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +27,19 @@ const router = createBrowserRouter([
         loader: dashboardLoader,
         errorElement: <Error />,
       },
+      {
+        path: 'logout',
+        element: <p>logged out!</p>
+      }
     ]
   },
 ]);
 
 function App() {
+  useDocumentTitle({
+    title: SiteConfig.companyName,
+  });
+
   return (
     <div className="App">
       <RouterProvider router={router} />    

@@ -9,10 +9,13 @@ import Error from "@/pages/Error";
 import Main, { mainLoader } from "@/layouts/Main";
 
 // hooks
-import useDocumentTitle from "./hooks/useDocumentTitle";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 // constants
 import { SiteConfig } from '@/constants';
+
+// actions
+import { logoutAction } from "@/actions/logout";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'logout',
-        element: <p>logged out!</p>
+        action: logoutAction,
       }
     ]
   },

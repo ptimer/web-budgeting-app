@@ -11,10 +11,12 @@ export function dashboardLoader() {
     return { userName };
 }
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const { userName } = useLoaderData() as DashboardData;
 
   return (
     <div>{ userName }</div>
   )
 }
+
+export default Dashboard;

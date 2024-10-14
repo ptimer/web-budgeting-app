@@ -1,4 +1,4 @@
 // Local storage
-export const fetchData = (key: string): string | null => {
-    return JSON.parse(localStorage.getItem(key)+'');
+export const fetchData = (key: string): string => {
+    return JSON.parse(JSON.stringify(localStorage.getItem(key) || ''));
 };

@@ -7,6 +7,9 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 // assets
 import logomark from '@/assets/logomark.svg';
 
+// constants
+import { SiteConfig } from "@/constants";
+
 interface Props {
   userName: string;
 }
@@ -25,7 +28,7 @@ const Nav = ({ userName }: Props) => {
         aria-label='Go to home'
       >
         <img src={logomark} alt='Go to home' height={30} />
-        <span>Budgefy</span>
+        <span>{ SiteConfig.companyName }</span>
       </NavLink>
       {
         userName && (

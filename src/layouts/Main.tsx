@@ -13,7 +13,7 @@ import Nav from '@/components/Nav';
 
 // loader
 interface MainData {
-    userName: string;
+    userName: string | null;
 }
 
 export function mainLoader() {

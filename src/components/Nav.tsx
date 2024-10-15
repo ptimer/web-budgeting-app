@@ -11,7 +11,7 @@ import logomark from '@/assets/logomark.svg';
 import { SiteConfig } from "@/constants";
 
 interface Props {
-  userName: string;
+  userName: string | null;
 }
 
 const Nav = ({ userName }: Props) => {

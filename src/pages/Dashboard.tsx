@@ -2,7 +2,7 @@ import { fetchData } from "@/helpers"
 import { useLoaderData } from "react-router-dom";
 
 interface DashboardData {
-  userName: string;
+  userName: string | null;
 }
 
 export function dashboardLoader() {

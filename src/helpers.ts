@@ -4,7 +4,7 @@ export const fetchData = (key: string): string | null => {
 
     if (!item) return null;
 
-    return JSON.parse(JSON.stringify(item));
+    return JSON.parse(item);
 };
 
 // delete item

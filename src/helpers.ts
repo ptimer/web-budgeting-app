@@ -1,7 +1,7 @@
 // Local storage
 export const fetchData = (key: string): string | null => {
     const item = localStorage.getItem(key);
-
+    
     if (!item) return null;
 
     return JSON.parse(item);

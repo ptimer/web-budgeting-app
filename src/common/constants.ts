@@ -1,3 +1,6 @@
-export const SiteConfig = {
+// types
+import { SiteConfigType } from "@/common/types";
+
+export const SiteConfig: SiteConfigType = {
     companyName: 'Budgefy',
 }

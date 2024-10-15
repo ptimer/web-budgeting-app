@@ -5,7 +5,10 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import wave from '@/assets/wave.svg';
 
 // helper functions
-import { fetchData } from "@/common/helpers"
+import { fetchData } from "@/common/helpers";
+
+// types
+import { APP_DATA_KEYS } from '@/common/types';
 
 // components
 import Nav from '@/components/Nav';
@@ -17,7 +20,7 @@ interface MainData {
 }
 
 export function mainLoader() {
-    const userName = fetchData('userName');
+    const userName = fetchData(APP_DATA_KEYS.userName);
 
     return { userName };
 }

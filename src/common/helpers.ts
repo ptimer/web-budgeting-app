@@ -1,5 +1,9 @@
+// types
+import { Budget, APP_DATA_KEYS } from "./types";
+
+// Generate random color
 const generateRandomColor = () => {
-    const existingBudgetsLength = fetchData("budgets")?.length ?? 0;
+    const existingBudgetsLength = fetchData(APP_DATA_KEYS.budgets)?.length ?? 0;
 
     return `${existingBudgetsLength * 34} 65% 50%`;
 }
@@ -14,15 +18,7 @@ export const fetchData = (key: string): string | null => {
     return JSON.parse(item);
 };
 
-// create budget
-interface Budget {
-    id: string;
-    name: string;
-    amount: number;
-    createdAt: Date;
-    color: string;
-}
-
+// Create budget
 export const createBudget = ({ name, amount }: Pick<Budget, 'name' | 'amount'>) => {
     const newItem = {
         id: crypto.randomUUID(),
@@ -32,13 +28,13 @@ export const createBudget = ({ name, amount }: Pick<Budget, 'name' | 'amount'>) 
         color: generateRandomColor(),
     };
 
-    const existingBudgets = fetchData("budgets") ?? [];
+    const existingBudgets = fetchData(APP_DATA_KEYS.budgets) ?? [];
     const newBudgets = JSON.stringify([...existingBudgets, newItem]);
 
-    return localStorage.setItem("budgets", newBudgets);
+    return localStorage.setItem(APP_DATA_KEYS.budgets, newBudgets);
 }
 
-// delete item
+// Delete item
 interface DeleteItemProps {
     key: string;
 }

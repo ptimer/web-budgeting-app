@@ -5,7 +5,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import wave from '@/assets/wave.svg';
 
 // helper functions
-import { fetchData } from "@/helpers"
+import { fetchData } from "@/common/helpers"
 
 // components
 import Nav from '@/components/Nav';

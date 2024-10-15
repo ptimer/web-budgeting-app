@@ -2,13 +2,13 @@
 import { Form, NavLink } from "react-router-dom";
 
 // library
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon } from "@heroicons/react/20/solid";
 
 // assets
 import logomark from '@/assets/logomark.svg';
 
 // constants
-import { SiteConfig } from "@/constants";
+import { SiteConfig } from "@/common/constants";
 
 interface Props {
   userName: string | null;
@@ -42,7 +42,7 @@ const Nav = ({ userName }: Props) => {
               className='btn btn--warning'
             >
               <span>Delete user</span>
-              <TrashIcon width={20} />
+              <TrashIcon />
             </button>
           </Form>
         )

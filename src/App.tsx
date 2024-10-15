@@ -16,7 +16,7 @@ import Main, { mainLoader } from "@/layouts/Main";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 // constants
-import { SiteConfig } from '@/constants';
+import { SiteConfig } from '@/common/constants';
 
 // actions
 import { logoutAction } from "@/actions/logout";

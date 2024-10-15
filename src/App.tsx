@@ -2,8 +2,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // library
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // pages
 import Dashboard, { dashboardAction, dashboardLoader } from "@/pages/Dashboard";
@@ -16,7 +16,7 @@ import Main, { mainLoader } from "@/layouts/Main";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 // constants
-import { SiteConfig } from '@/common/constants';
+import { SiteConfig } from "@/common/constants";
 
 // actions
 import { logoutAction } from "@/actions/logout";
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
-        path: 'logout',
+        path: "logout",
         action: logoutAction,
       }
     ]

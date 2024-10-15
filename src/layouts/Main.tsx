@@ -2,16 +2,16 @@
 import { Outlet, useLoaderData } from "react-router-dom";
 
 // assets
-import wave from '@/assets/wave.svg';
+import wave from "@/assets/wave.svg";
 
 // helper functions
 import { fetchData } from "@/common/helpers";
 
 // types
-import { APP_DATA_KEYS } from '@/common/types';
+import { APP_DATA_KEYS } from "@/common/types";
 
 // components
-import Nav from '@/components/Nav';
+import Nav from "@/components/Nav";
 
 
 // loader
@@ -29,12 +29,12 @@ const Main = () => {
   const { userName } = useLoaderData() as MainData;
 
   return (
-    <div className='layout'>
+    <div className="layout">
         <Nav {...{ userName }} />
         <main>
             <Outlet />
         </main>
-        <img src={wave} alt='wave' />
+        <img src={wave} alt="wave" />
     </div>
   )
 }

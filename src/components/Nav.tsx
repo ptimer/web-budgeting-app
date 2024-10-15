@@ -5,7 +5,7 @@ import { Form, NavLink } from "react-router-dom";
 import { TrashIcon } from "@heroicons/react/20/solid";
 
 // assets
-import logomark from '@/assets/logomark.svg';
+import logomark from "@/assets/logomark.svg";
 
 // constants
 import { SiteConfig } from "@/common/constants";
@@ -16,7 +16,7 @@ interface Props {
 
 const Nav = ({ userName }: Props) => {
   const handleDeleteUser = (event: React.FormEvent<HTMLFormElement>) => {
-    const confirmation = confirm('Delete user and all data?');
+    const confirmation = confirm("Delete user and all data?");
 
     if (!confirmation) event.preventDefault();
   }
@@ -24,22 +24,22 @@ const Nav = ({ userName }: Props) => {
   return (
     <nav>
       <NavLink
-        to='/'
-        aria-label='Go to home'
+        to="/"
+        aria-label="Go to home"
       >
-        <img src={logomark} alt='Go to home' height={30} />
+        <img src={logomark} alt="Go to home" height={30} />
         <span>{ SiteConfig.companyName }</span>
       </NavLink>
       {
         userName && (
           <Form
-            method='post'
-            action='/logout'
+            method="post"
+            action="/logout"
             onSubmit={handleDeleteUser}
           >
             <button
               type="submit"
-              className='btn btn--warning'
+              className="btn btn--warning"
             >
               <span>Delete user</span>
               <TrashIcon />

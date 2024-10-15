@@ -11,8 +11,8 @@ import { createBudget, fetchData } from "@/common/helpers";
 import { AppData, APP_DATA_KEYS } from "@/common/types";
 
 // components
-import Intro from '@/components/Intro';
-import AddBudgetForm from '@/components/AddBudgetForm';
+import Intro from "@/components/Intro";
+import AddBudgetForm from "@/components/AddBudgetForm";
 
 // loader
 export function dashboardLoader() {
@@ -27,25 +27,25 @@ export async function dashboardAction({ request }: any) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
   
-  if (_action === 'newUser') {
+  if (_action === "newUser") {
     try {
       localStorage.setItem(APP_DATA_KEYS.userName, JSON.stringify(values.userName));
       return toast.success(`Welcome, ${values.userName}`);
     } catch (e: any) {
-      throw new Error('There was a problem creating your account.');
+      throw new Error("There was a problem creating your account.");
     }
   }
 
-  if (_action === 'createBudget') {
+  if (_action === "createBudget") {
     try {
       createBudget({
         name: values.newBudget,
         amount: values.newBudgetAmount,
       });
 
-      return toast.success('Budget created!');
+      return toast.success("Budget created!");
     } catch (e: any) {
-      throw new Error('There was a problem creating your budget.');
+      throw new Error("There was a problem creating your budget.");
     }
   }
 }
@@ -56,9 +56,9 @@ const Dashboard = () => {
   return (
     <>
       { userName ? (
-        <div className='dashboard'>
-          <h1>Welcome back, <span className='accent'>{userName}</span></h1>
-          <div className='grid-sm'>
+        <div className="dashboard">
+          <h1>Welcome back, <span className="accent">{userName}</span></h1>
+          <div className="grid-sm">
             <div className="grid-lg">
               <div className="flex-lg">
                 <AddBudgetForm />

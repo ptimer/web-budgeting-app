@@ -19,7 +19,7 @@ export const fetchData = (key: string): string | null => {
 };
 
 // Create budget
-export const createBudget = ({ name, amount }: Pick<Budget, 'name' | 'amount'>) => {
+export const createBudget = ({ name, amount }: Pick<Budget, "name" | "amount">) => {
     const newItem = {
         id: crypto.randomUUID(),
         name,

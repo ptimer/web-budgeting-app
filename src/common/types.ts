@@ -8,8 +8,8 @@ export interface Budget {
 };
 
 export enum APP_DATA_KEYS {
-    userName = 'userName',
-    budgets = 'budgets'
+    userName = "userName",
+    budgets = "budgets"
 }
 
 export interface AppData {

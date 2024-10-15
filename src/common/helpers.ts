@@ -1,5 +1,5 @@
 // types
-import { Budget, APP_DATA_KEYS } from "./types";
+import { Budget, Expense, APP_DATA_KEYS } from "./types";
 
 // Generate random color
 const generateRandomColor = () => {
@@ -32,6 +32,22 @@ export const createBudget = ({ name, amount }: Pick<Budget, "name" | "amount">) 
     const newBudgets = JSON.stringify([...existingBudgets, newItem]);
 
     return localStorage.setItem(APP_DATA_KEYS.budgets, newBudgets);
+}
+
+// Create expense
+export const createExpense = ({ name, amount, budgetId }: Pick<Expense, "name" | "amount" | "budgetId">) => {
+    const newItem = {
+        id: crypto.randomUUID(),
+        name,
+        amount: +amount,
+        createdAt: Date.now(),
+        budgetId: budgetId,
+    };
+
+    const existingExpenses = fetchData(APP_DATA_KEYS.expenses) ?? [];
+    const newExpenses = JSON.stringify([...existingExpenses, newItem]);
+
+    return localStorage.setItem(APP_DATA_KEYS.expenses, newExpenses);
 }
 
 // Delete item

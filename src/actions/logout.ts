@@ -12,6 +12,14 @@ export const logoutAction = async () => {
         key: "userName",
     });
 
+    deleteItem({
+        key: "budgets",
+    });
+
+    deleteItem({
+        key: "expenses",
+    });
+
     toast.success("you've deleted your account!");
 
     return redirect("/");

@@ -32,7 +32,8 @@ const AddExpenseForm = ({ budgets }:Props) => {
 
     const composeCategoriesSelect = () => {
         const sortedBudgets = budgets.sort((a, b) => +a.createdAt - +b.createdAt);
-        const handleBudgetOption = (budget: Budget) => (
+
+        const composeBudgetOption = (budget: Budget) => (
             <option
                 key={budget.id}
                 value={budget.id}
@@ -47,7 +48,7 @@ const AddExpenseForm = ({ budgets }:Props) => {
                 id="newExpenseBudget"
                 required
             >
-                { sortedBudgets.map(handleBudgetOption) }
+                { sortedBudgets.map(composeBudgetOption) }
             </select>
         )
     };

@@ -21,11 +21,11 @@ const Error = () => {
       <p>{error.message || error.statusText}</p>
       <div className="flex-md">
         <button className="btn btn--dark" onClick={handleNavigateBack}>
-          <ArrowUturnLeftIcon />
+          <ArrowUturnLeftIcon width={20} />
           <span>Go Back</span>
         </button>
         <Link to="/" className="btn btn--dark">
-          <HomeIcon />
+          <HomeIcon width={20} />
           <span>Go home</span>
         </Link>
       </div>

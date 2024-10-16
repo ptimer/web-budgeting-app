@@ -64,7 +64,7 @@ const AddExpenseForm = ({ budgets }:Props) => {
                 : (
                     <>
                         <span>Add Expense</span>
-                        <PlusCircleIcon />
+                        <PlusCircleIcon width={20} />
                     </>
                   )}
             </button>

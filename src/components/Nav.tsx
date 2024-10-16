@@ -42,7 +42,7 @@ const Nav = ({ userName }: Props) => {
               className="btn btn--warning"
             >
               <span>Delete user</span>
-              <TrashIcon />
+              <TrashIcon width={20} />
             </button>
           </Form>
         )

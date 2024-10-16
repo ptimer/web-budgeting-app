@@ -31,7 +31,7 @@ const AddBudgetForm = () => {
                 : (
                     <>
                         <span>Create budget</span>
-                        <CurrencyDollarIcon />
+                        <CurrencyDollarIcon width={20} />
                     </>
                   )}
             </button>

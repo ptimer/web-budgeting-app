@@ -63,3 +63,13 @@ interface DeleteItemProps {
 export const deleteItem = ({ key }: DeleteItemProps) => {
     return localStorage.removeItem(key);
 }
+
+// FORMATTING
+
+// Format currency
+export const formatCurrency = (amount: number) => {
+    return amount.toLocaleString(undefined, {
+        style: "currency",
+        currency: "USD",
+    });
+} 

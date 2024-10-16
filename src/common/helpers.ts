@@ -64,7 +64,21 @@ export const deleteItem = ({ key }: DeleteItemProps) => {
     return localStorage.removeItem(key);
 }
 
+// total spent by budget
+export const totalSpentByBudget = (budgetId: string) => {
+    const expenses = fetchData<Expense[]>(APP_DATA_KEYS.expenses, []);
+
+    const budgetSpent = expenses.reduce((totalAmount: number, expense: Expense) => {
+        if (expense.budgetId !== budgetId) return totalAmount;
+        
+        return totalAmount += expense.amount;
+    }, 0);
+
+    return budgetSpent;
+};
+
 // FORMATTING
+
 
 // Format currency
 export const formatCurrency = (amount: number) => {

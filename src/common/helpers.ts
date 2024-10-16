@@ -26,6 +26,19 @@ export const fetchData = <T>(key: string, defaultValue: T): T => {
     }
 };
 
+// Get all items from local storage
+interface GetAllMatchingItemsArgs {
+    category: string,
+    key: string,
+    value: string,
+}
+
+export const getAllMatchingItems = ({ category, key, value }: GetAllMatchingItemsArgs) => {
+    const data = fetchData<any>(category, []);
+    
+    return data.filter((item: any) => item[key] === value);
+}
+
 // Create budget
 export const createBudget = ({ name, amount }: Pick<Budget, "name" | "amount">) => {
     const newItem = {

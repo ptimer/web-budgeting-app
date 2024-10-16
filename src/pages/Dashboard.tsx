@@ -8,17 +8,18 @@ import { toast } from "react-toastify";
 import { createBudget, createExpense, fetchData } from "@/common/helpers";
 
 // types
-import { AppData, APP_DATA_KEYS } from "@/common/types";
+import { AppData, APP_DATA_KEYS, Budget } from "@/common/types";
 
 // components
 import Intro from "@/components/Intro";
 import AddBudgetForm from "@/components/AddBudgetForm";
 import AddExpenseForm from "@/components/AddExpenseForm";
+import BudgetItem from "@/components/BudgetItem";
 
 // loader
 export function dashboardLoader() {
-    const userName = fetchData(APP_DATA_KEYS.userName);
-    const budgets = fetchData(APP_DATA_KEYS.budgets);
+    const userName = fetchData<string | null>(APP_DATA_KEYS.userName, null);
+    const budgets = fetchData<Budget[]>(APP_DATA_KEYS.budgets, []);
 
     return { userName, budgets };
 }
@@ -74,12 +75,18 @@ const Dashboard = () => {
         <div className="dashboard">
           <h1>Welcome back, <span className="accent">{userName}</span></h1>
           <div className="grid-sm">
-            { budgets && budgets.length > 0 
+            { budgets.length > 0 
                 ? (
                   <div className="grid-lg">
                     <div className="flex-lg">
                       <AddBudgetForm />
                       <AddExpenseForm budgets={budgets} />
+                    </div>
+                    <h2>Existing budgets</h2>
+                    <div className="budgets">
+                      {
+                        budgets.map(budget => <BudgetItem key={budget.id} budget={budget} />)
+                      }
                     </div>
                   </div>
                 ) : (

@@ -20,7 +20,7 @@ interface MainData {
 }
 
 export function mainLoader() {
-    const userName = fetchData(APP_DATA_KEYS.userName);
+    const userName = fetchData<string | null>(APP_DATA_KEYS.userName, null);
 
     return { userName };
 }

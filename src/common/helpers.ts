@@ -1,6 +1,9 @@
 // types
 import { Budget, Expense, APP_DATA_KEYS } from "./types";
 
+// Wait
+export const wait = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
+
 // Generate random color
 const generateRandomColor = () => {
     const existingBudgetsLength = fetchData<Budget[]>(APP_DATA_KEYS.budgets, []).length ?? 0;

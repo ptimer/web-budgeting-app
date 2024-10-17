@@ -29,7 +29,7 @@ export const fetchData = <T>(key: string, defaultValue: T): T => {
 // Delete item
 interface DeleteItemArgs {
     key: string,
-    id: string,
+    id?: string,
 }
 
 export const deleteItem = ({ key, id}: DeleteItemArgs) => {
@@ -41,7 +41,7 @@ export const deleteItem = ({ key, id}: DeleteItemArgs) => {
         return localStorage.setItem(key, JSON.stringify(newData));
     }
 
-    return localStorage.remove(key);
+    return localStorage.removeItem(key);
 }
 
 // Get all items from local storage
@@ -53,7 +53,7 @@ interface GetAllMatchingItemsArgs {
 
 export const getAllMatchingItems = ({ category, key, value }: GetAllMatchingItemsArgs) => {
     const data = fetchData<any>(category, []);
-    
+
     return data.filter((item: any) => item[key] === value);
 }
 

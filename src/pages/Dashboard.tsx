@@ -1,27 +1,29 @@
 // rrd
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 // library
 import { toast } from "react-toastify";
 
 // helpers
-import { createBudget, createExpense, fetchData } from "@/common/helpers";
+import { createBudget, createExpense, deleteItem, fetchData, wait } from "@/common/helpers";
 
 // types
-import { AppData, APP_DATA_KEYS, Budget } from "@/common/types";
+import { AppData, APP_DATA_KEYS, Budget, Expense } from "@/common/types";
 
 // components
 import Intro from "@/components/Intro";
 import AddBudgetForm from "@/components/AddBudgetForm";
 import AddExpenseForm from "@/components/AddExpenseForm";
 import BudgetItem from "@/components/BudgetItem";
+import Table from "@/components/Table";
 
 // loader
 export function dashboardLoader() {
     const userName = fetchData<string | null>(APP_DATA_KEYS.userName, null);
     const budgets = fetchData<Budget[]>(APP_DATA_KEYS.budgets, []);
+    const expenses = fetchData<Expense[]>(APP_DATA_KEYS.expenses, []);
 
-    return { userName, budgets };
+    return { userName, budgets, expenses };
 }
 
 // action
@@ -40,6 +42,8 @@ export async function dashboardAction({ request }: any) {
 
   if (_action === "createBudget") {
     try {
+      await wait(1000);
+
       createBudget({
         name: values.newBudget,
         amount: values.newBudgetAmount,
@@ -52,6 +56,8 @@ export async function dashboardAction({ request }: any) {
   };
 
   if (_action === "createExpense") {
+    await wait(100);
+
     try {
       createExpense({
         name: values.newExpense,
@@ -64,10 +70,27 @@ export async function dashboardAction({ request }: any) {
       throw new Error("There was a problem creating your expense.");
     }
   };
+
+  if (_action === "deleteExpense") {
+    await wait(100);
+
+    try {
+      deleteItem({
+        key: "expenses",
+        id: values.expenseId,
+      });
+
+      return toast.success("Expense deleted!");
+    } catch (e: any) {
+      throw new Error("There was a problem deleting your expense.");
+    }
+  };
 }
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData() as AppData;
+  const { userName, budgets, expenses } = useLoaderData() as AppData;
+
+  const sortedExpenses = expenses.sort((a, b) => +b.createdAt - +a.createdAt);
 
   return (
     <>
@@ -88,6 +111,21 @@ const Dashboard = () => {
                         budgets.map(budget => <BudgetItem key={budget.id} budget={budget} />)
                       }
                     </div>
+                    { expenses.length > 0 && (
+                        <div className="grid-md">
+                          <h2>Recent Expenses</h2>
+                          <Table expenses={sortedExpenses.slice(0, 8)} />
+                          {expenses.length > 8 && (
+                            <Link
+                              to="expenses"
+                              className="btn btn--dark"  
+                            >
+                              View all expenses
+                            </Link>
+                          )}
+                        </div>
+                      )
+                    }
                   </div>
                 ) : (
                   <div className="grid-sm">

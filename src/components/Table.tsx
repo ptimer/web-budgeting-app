@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Table = ({ expenses }: Props) => {
-    const cols = ["Name", "Amount", "Date"];
+    const cols = ["Name", "Amount", "Date", "Budget", ""];
 
     return (
         <div className="table">

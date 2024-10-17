@@ -26,6 +26,24 @@ export const fetchData = <T>(key: string, defaultValue: T): T => {
     }
 };
 
+// Delete item
+interface DeleteItemArgs {
+    key: string,
+    id: string,
+}
+
+export const deleteItem = ({ key, id}: DeleteItemArgs) => {
+    const existingData = fetchData<any>(key, []);
+
+    if (id) {
+        const newData = existingData.filter((item: any) => item.id !== id);
+        
+        return localStorage.setItem(key, JSON.stringify(newData));
+    }
+
+    return localStorage.remove(key);
+}
+
 // Get all items from local storage
 interface GetAllMatchingItemsArgs {
     category: string,
@@ -69,15 +87,6 @@ export const createExpense = ({ name, amount, budgetId }: Pick<Expense, "name" |
     const newExpenses = JSON.stringify([...existingExpenses, newItem]);
 
     return localStorage.setItem(APP_DATA_KEYS.expenses, newExpenses);
-}
-
-// Delete item
-interface DeleteItemProps {
-    key: string;
-}
-
-export const deleteItem = ({ key }: DeleteItemProps) => {
-    return localStorage.removeItem(key);
 }
 
 // total spent by budget

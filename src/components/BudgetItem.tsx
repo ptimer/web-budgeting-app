@@ -1,5 +1,11 @@
 import { CSSProperties } from "react";
 
+// rrd
+import { Form, Link } from "react-router-dom";
+
+// library
+import { BanknotesIcon, TrashIcon } from "@heroicons/react/20/solid";
+
 // helpers
 import { formatCurrency, formatPercentage, totalSpentByBudget } from "@/common/helpers";
 
@@ -7,10 +13,11 @@ import { formatCurrency, formatPercentage, totalSpentByBudget } from "@/common/h
 import { Budget } from "@/common/types"
 
 interface Props {
-    budget: Budget
+    budget: Budget;
+    showDelete?: boolean;
 }
 
-const BudgetItem = ({ budget }: Props) => {
+const BudgetItem = ({ budget, showDelete = false }: Props) => {
     const { id, name, amount, color } = budget;
 
     const spent = totalSpentByBudget(id);
@@ -21,6 +28,14 @@ const BudgetItem = ({ budget }: Props) => {
         };
 
         return style as CSSProperties & { [key: string]: string }
+    }
+
+    const handleDeleteBudget = (event: any) => {
+        const confirmResult = confirm("Are you sure you want to permanently delete this budget?");
+        
+        if (!confirmResult) {
+            event.preventDefault();
+        }
     }
 
     return (
@@ -36,6 +51,30 @@ const BudgetItem = ({ budget }: Props) => {
                 <small>{formatCurrency(spent)} spent</small>
                 <small>{formatCurrency(amount - spent)} remaining</small>
             </div>
+            { showDelete ? (
+                <div className="flex-sm">
+                    <Form 
+                        method="post"
+                        action="delete"
+                        onSubmit={handleDeleteBudget}
+                    >
+                        <button type="submit" className="btn">
+                            <span>Delete Budget</span>
+                            <TrashIcon width={20} />
+                        </button>
+                    </Form>
+                </div>
+            ) : (
+                <div className="flex-sm">
+                    <Link
+                        to={`/budget/${id}`}
+                        className="btn"
+                    >
+                        <span>View Details</span>
+                        <BanknotesIcon width={20} />
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

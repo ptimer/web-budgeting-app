@@ -22,6 +22,7 @@ import { SiteConfig } from "@/common/constants";
 
 // actions
 import { logoutAction } from "@/actions/logout";
+import { deleteBudgetAction } from "@/actions/deleteBudget";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
         loader: budgetLoader,
         errorElement: <Error />,
         action: budgetAction,
+        children: [
+          {
+            path: "delete",
+            action: deleteBudgetAction,
+          }
+        ]
       },
       {
         path: "expenses",

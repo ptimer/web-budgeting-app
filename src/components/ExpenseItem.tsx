@@ -14,9 +14,10 @@ import { formatCurrency, formatDateToLocaleString, getAllMatchingItems } from "@
 
 interface Props {
     expense: Expense;
+    showBudget?: boolean;
 }
 
-const ExpenseItem = ({ expense }: Props) => {
+const ExpenseItem = ({ expense, showBudget = true }: Props) => {
   const fetcher = useFetcher();
 
   const isSubmitting = fetcher.state === "submitting";
@@ -33,21 +34,25 @@ const ExpenseItem = ({ expense }: Props) => {
     };
 
     return style as CSSProperties & { [key: string]: string }
-}
+  }
 
   return (
     <>
         <td>{expense.name}</td>
         <td>{formatCurrency(expense.amount)}</td>
         <td>{formatDateToLocaleString(expense.createdAt)}</td>
-        <td>
-          <Link 
-            to={`/budget/${budget.id}`}
-            style={composeExpenseItemStyle()}
-          >
-            {budget.name}
-          </Link>
-        </td>
+        {
+          showBudget && (
+            <td>
+              <Link 
+                to={`/budget/${budget.id}`}
+                style={composeExpenseItemStyle()}
+              >
+                {budget.name}
+              </Link>
+            </td>
+          )
+        }
         <td>
           <fetcher.Form method="post">
               <input type="hidden" name="_action" value="deleteExpense" />

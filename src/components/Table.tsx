@@ -6,10 +6,11 @@ import ExpenseItem from "@/components/ExpenseItem";
 
 interface Props {
     expenses: Expense[];
+    showBudget?: boolean;
 }
 
-const Table = ({ expenses }: Props) => {
-    const cols = ["Name", "Amount", "Date", "Budget", ""];
+const Table = ({ expenses, showBudget = true }: Props) => {
+    const cols = ["Name", "Amount", "Date", showBudget ? "Budget" : "", ""];
 
     return (
         <div className="table">
@@ -27,7 +28,7 @@ const Table = ({ expenses }: Props) => {
                     {
                         expenses.map(expense => (
                             <tr key={expense.id}>
-                                <ExpenseItem expense={expense} />
+                                <ExpenseItem {...{expense, showBudget}} />
                             </tr>
                         ))
                     }

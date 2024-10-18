@@ -4,7 +4,7 @@
 An interactive budget app using React Router and local storage.
 ![Homepage preview of demo page](public/budget-app-preview.png)
 
-[Live Preview]()
+[Live Preview](https://ptimer.github.io/web-budgeting-app/)
 
 ## Installation
 

@@ -11,6 +11,9 @@ import Error from "@/pages/Error";
 import ExpensesPage, { expensesAction, expensesLoader } from "@/pages/ExpensesPage";
 import BudgetPage, { budgetAction, budgetLoader } from "@/pages/BudgetPage";
 
+// components
+import Ribbon from "@/components/Ribbon";
+
 // layouts
 import Main, { mainLoader } from "@/layouts/Main";
 
@@ -75,6 +78,12 @@ function App() {
     <div className="App">
       <RouterProvider router={router} />
       <ToastContainer />
+      <Ribbon
+        position="right-bottom"
+        title="View Source on GitHub"
+        url={SiteConfig.repositoryUrl}
+        baseColour="dark-gray"
+      />
     </div>
   );
 }

@@ -30,4 +30,5 @@ export interface AppData {
 // Site Config
 export interface SiteConfigType {
     companyName: string;
+    repositoryUrl: string;
 }

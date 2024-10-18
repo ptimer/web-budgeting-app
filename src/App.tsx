@@ -1,5 +1,5 @@
 // rrd imports
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 // library
 import { ToastContainer } from "react-toastify";
@@ -27,7 +27,7 @@ import { SiteConfig } from "@/common/constants";
 import { logoutAction } from "@/actions/logout";
 import { deleteBudgetAction } from "@/actions/deleteBudget";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/web-budgeting-app/",
     element: <Main/>,

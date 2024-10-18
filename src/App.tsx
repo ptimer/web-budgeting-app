@@ -29,7 +29,7 @@ import { deleteBudgetAction } from "@/actions/deleteBudget";
 
 const router = createHashRouter([
   {
-    path: "/web-budgeting-app/",
+    path: "/",
     element: <Main/>,
     loader: mainLoader,
     errorElement: <Error />,
